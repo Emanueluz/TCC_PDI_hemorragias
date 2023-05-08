@@ -1,5 +1,4 @@
 import csv
-from pydicom import dcmread
 
  
 def ler_arquivo_de_csv_original(arquivo):
@@ -49,12 +48,12 @@ def comparar_listas(lista1,lista2):
 
 
 def escrever_csv(lista, nome_do_arquivo):
-    with (nome_do_arquivo+".csv","w") as arquivo:
-        arquivo = csv.writer(lista)
-
-
-
-    return 0
+    arquivo= open(nome_do_arquivo+".csv","w")
+    a = csv.writer(arquivo)
+    a.writerow(["ID","epidural","intraparenchymal","intraventricular","subarachnoid","subdural","any"])
+    a.writerows(lista)
+    arquivo.close()
+    return 
 
 
 def separador_de_positivos(lista):
@@ -63,10 +62,10 @@ def separador_de_positivos(lista):
     return lista_de_tipo_de_hemorragias
 
 def main():
-    lista=ler_arquivo_de_csv_original("/home/emanuel/Área de Trabalho/TCC/stage_2_train.csv")
-    lista_treino=ler_arquivo_de_csv_original("/home/emanuel/Área de Trabalho/TCC/stage_2_sample_submission.csv")
+    lista=ler_arquivo_de_csv_original("/home/emanuel/Área de Trabalho/stage_2_train.csv")
+    lista_treino=ler_arquivo_de_csv_original("/media/emanuel/809AEADC9AEACE2A/TCC/stage_2_sample_submission.csv")
     #comparar_listas(lista_treino, lista)
-    escrever_csv(lista, "novo_arquiv0_de_train")
+    escrever_csv(lista, "/home/emanuel/Área de Trabalho/TCC/novo_arquivo_de_train")
     
     
     return 0
@@ -74,6 +73,4 @@ def main():
 main()
 
 
-if true:
-    abs(x)
-el
+ 
